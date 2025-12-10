@@ -32,6 +32,7 @@ public class WestminsterEnrollmentManager implements EnrollmentManager{
         System.out.println("To Add a new person, press 1");
         System.out.println("To Print the list of all people press 2");
         System.out.println("To Open GUI, press 3");
+        System.out.println("To Edit a person's name using ID , press 4");
 
         
         // Switch based on selected option
@@ -66,6 +67,9 @@ public class WestminsterEnrollmentManager implements EnrollmentManager{
             // GUI
             case 3:
                 this.runGUI();
+                break;
+            case 4:
+                this.editPersonByID();
                 break;
             
             default:
@@ -196,7 +200,34 @@ public class WestminsterEnrollmentManager implements EnrollmentManager{
             System.out.println("No more space in the list");
         }
     }
+    @Override
+    public void editPersonByID(){
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter the ID of the person to edit:");
+        String targetID = s.nextLine().trim();
 
+        Person found = null;
+        for(Person p : this.personList) {
+            if (p.getID() != null && p.getID().equals(targetID)) {
+                found = p;
+                break;
+            }
+        }
+        if(found == null) {
+            System.out.println("No person found with ID:"+ targetID);
+            return;
+        }
+        System.out.println("Found:"+found.toString());
+        System.out.println("Enter new first name (leave blank to keep current):");
+        String newFirst = s.nextLine().trim();
+        System.out.println("Enter new last name (leave blank to keep current):");
+        String newLast = s.nextLine().trim();
+
+        if(!newFirst.isEmpty()) found.setName(newFirst);
+        if(!newLast.isEmpty()) found.setSurname(newLast);
+
+        System.out.println("Person updated:"+ found.toString());
+    }
     @Override
     public void printPersonList() {
         
