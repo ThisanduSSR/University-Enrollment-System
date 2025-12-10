@@ -15,5 +15,5 @@ public interface EnrollmentManager {
     
     void runGUI();// Run main GUI
 
-    void editPersonID();
+    void editPersonByID();
 }
