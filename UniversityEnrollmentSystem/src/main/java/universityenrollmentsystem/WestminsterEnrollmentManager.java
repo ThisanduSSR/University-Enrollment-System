@@ -228,11 +228,11 @@ public class WestminsterEnrollmentManager implements EnrollmentManager{
 
         System.out.println("Person updated:"+ found.toString());
     }
+
     @Override
     public void printPersonList() {
-        
-        
         if (!personList.isEmpty()){
+            Collections.sort(personList);
             System.out.println("\n--- ENROLLED PEOPLE LIST ---");
             for(Person member : personList) {
                 System.out.println(member.toString());

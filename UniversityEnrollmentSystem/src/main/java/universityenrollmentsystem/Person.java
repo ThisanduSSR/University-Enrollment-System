@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 
-public class Person {
+public class Person implements Comparable<Person>{
     private String name;
     private String surname;
     private LocalDate dob;
@@ -32,7 +32,13 @@ public class Person {
     public String getName(){ return name; }
     public String getSurname(){ return surname; }
     public LocalDate getDob() { return dob; }
-    
+
+    public int getAge() {
+        if(dob == null)
+            return-1;
+        return LocalDate.now().getYear() - dob.getYear();
+    }
+
     // Get Date of Birth in String "dd/MM/yyyy" format
     public String getStringDate(){
         if (dob == null) return "N/A";
@@ -48,5 +54,17 @@ public class Person {
     public String toString(){
         return name + " " + surname +  ", ID: " + ID + ", DOB: "  + getStringDate() + ", ";
     }
-    
+    @Override
+    public int compareTo(Person other){
+        if(this.surname == null && other.surname == null) return 0;
+        if(this.surname == null) return -1;
+        if(other.surname == null) return 1;
+        int surnameCompare = this.surname.compareToIgnoreCase(other.surname);
+        if(surnameCompare !=0) return surnameCompare;
+        if(this.name == null && other.name == null) return 0;
+        if(this.name == null) return -1;
+        if(other.name == null) return 1;
+        return this.name.compareToIgnoreCase(other.name);
+    }
 }
+
