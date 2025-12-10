@@ -4,7 +4,6 @@
  */
 package universityenrollmentsystem;
 
-public class
 
 public interface EnrollmentManager {
     
