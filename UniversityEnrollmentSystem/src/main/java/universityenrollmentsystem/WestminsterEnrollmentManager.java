@@ -217,6 +217,16 @@ public class WestminsterEnrollmentManager implements EnrollmentManager{
             System.out.println("No person found with ID:"+ targetID);
             return;
         }
+        String type;
+        if (found instanceof Student) type = "Student";
+        else if (found instanceof Lecturer) type = "Lecturer";
+        else if (found instanceof Administrator) type = "Administrator";
+        else type = "Person";
+
+        System.out.println("Type of them : " + type);
+
+        System.out.println ("currentName"+ found.getName());
+
         System.out.println("Found:"+found.toString());
         System.out.println("Enter new first name (leave blank to keep current):");
         String newFirst = s.nextLine().trim();
